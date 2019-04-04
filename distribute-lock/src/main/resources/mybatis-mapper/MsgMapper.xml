@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cam.ddd.lock.dao.MsgDao">
+
+	<resultMap id="MsgInfo" type="com.cam.ddd.lock.model.MsgModel" >
+		<result column="msg" property="msg" />
+		<result column="msgcount" property="msgCount" />
+
+	</resultMap>
+
+
+	<select id="findByMsg" parameterType="java.util.HashMap" resultMap="MsgInfo">
+		SELECT msg,msgCount
+		FROM t_msg AS t
+		WHERE t.msg = #{msg}
+	</select>
+	
+	<update id="update" parameterType="com.cam.ddd.lock.model.MsgModel" >
+		UPDATE t_msg
+		SET `msgcount` = #{msgCount}
+		WHERE msg = #{msg}
+	</update>
+
+	
+</mapper>
